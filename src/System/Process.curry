@@ -1,6 +1,6 @@
 module System.Process 
-  ( getPID, system, exitWith, sleep
-  ) where
+  ( getPID, system, exitWith, sleep )
+ where
 
 import System.Environment
 
