@@ -3,12 +3,6 @@ import Control.Exception as C (IOException, handle)
 import System.Exit            (ExitCode (..), exitWith)
 import System.Process         (system)
 
-#if __GLASGOW_HASKELL__ < 840
-import System.Environment       (getEnvironment)
-#else
-import System.Environment.Blank (getEnvironment)
-#endif
-
 #if defined(mingw32_HOST_OS) || defined(__MINGW32__)
 import System.Win32.Process
 #else
@@ -30,10 +24,6 @@ external_d_C_getPID _ _ = toCurry $ do
 external_d_C_prim_system :: Curry_Prelude.C_String -> Cover -> ConstStore
                          -> Curry_Prelude.C_IO Curry_Prelude.C_Int
 external_d_C_prim_system str _ _ = toCurry system str
-
-external_d_C_prim_getEnvironment :: Cover -> ConstStore ->
-                                 -> Curry_Prelude.C_IO (Curry_Prelude.OP_List (Curry_Prelude.OP_Tuple2 Curry_Prelude.C_String Curry_Prelude.C_String))
-external_d_C_prim_getEnvironment _ _ = toCurry getEnvironment
 
 instance ConvertCurryHaskell Curry_Prelude.C_Int ExitCode where
   toCurry ExitSuccess     = toCurry (0 :: Int)
