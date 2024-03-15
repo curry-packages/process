@@ -19,7 +19,7 @@
          "System.Process"
   ],
     "source": {
-      "git": "https://git.ps.informatik.uni-kiel.de/curry-packages/process.git",
+      "git": "https://github.com/curry-packages/process.git",
       "tag": "$version"
     }
 }
